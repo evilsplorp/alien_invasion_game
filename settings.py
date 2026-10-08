@@ -1,6 +1,7 @@
 from pathlib import Path
 
 class Settings:
+    """A class to manage all the global settings for the game."""
 
     def __init__(self):
         self.name: str = 'Alien Invasion'
@@ -20,4 +21,3 @@ class Settings:
         self.bullet_w = 25
         self.bullet_h = 80
         self.bullet_amount = 5
-        

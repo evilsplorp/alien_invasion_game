@@ -6,9 +6,12 @@ if TYPE_CHECKING:
     from alien_invasion import AlienInvasion
 
 class Bullet(Sprite):
-    def __init__(self, game: 'AlienInvasion'):
-        super().__init__()
+    """A class to manage individual bullets fired from the player's ship."""
 
+    def __init__(self, game: 'AlienInvasion'):
+        """Initialize the bullet sprite, load it, and make sure it launches from the ship's midtop."""
+
+        super().__init__()
         self.screen = game.screen
         self.settings = game.settings
 
@@ -22,8 +25,12 @@ class Bullet(Sprite):
         self.y  = float(self.rect.y)
 
     def update(self):
+        """Move the bullet up and update its exact position."""
+
         self.y -= self.settings.bullet_speed
         self.rect.y = self.y
 
     def draw_bullet(self):
+        """Generate the bullet image onto the screen surface at its updated position."""
+
         self.screen.blit(self.image, self.rect)
