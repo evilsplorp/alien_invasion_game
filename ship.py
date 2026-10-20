@@ -28,6 +28,9 @@ class Ship:
         self.arsenal = arsenal
 
     def _center_ship(self):
+        """
+        Position the ship at bottom center.
+        """
         self.rect.midbottom = self.boundaries.midbottom
         self.x = float(self.rect.x)
 
@@ -59,6 +62,9 @@ class Ship:
         return self.arsenal.fire_bullet()
 
     def check_collisions(self, other_group):
+        """
+        Check for ship collisions with aliens.
+        """
         if pygame.sprite.spritecollideany(self, other_group):
             self._center_ship()
             return True
