@@ -89,7 +89,7 @@ class AlienInvasion:
         self.ship.draw()
         self.alien_fleet.draw()
         pygame.display.flip()
-
+ 
     def _check_events(self):
         """Respond to keypresses and mouse events captured by Pygame."""
 
