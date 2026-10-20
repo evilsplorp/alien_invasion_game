@@ -25,14 +25,15 @@ class Alien(Sprite):
         self.rect.x = x
         self.rect.y = y
 
-        # self.y  = float(self.rect.y)
+        self.y  = float(self.rect.y)
+        self.x = float(self.rect.x)
 
     def update(self):
         """Move the bullet up and update its exact position."""
-        pass
-
-        # self.y -= self.settings.bullet_speed
-        # self.rect.y = self.y
+        
+        temp_speed = self.settings.fleet_speed
+        self.x += temp_speed
+        self.rect.x = self.x
 
     def draw_alien(self):
         """Generate the alien image onto the screen surface at its updated position."""
