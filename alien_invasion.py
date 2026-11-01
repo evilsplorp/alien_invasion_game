@@ -24,6 +24,7 @@ class AlienInvasion:
         """Initialize the game, create resources, and set up audio/visual configurations."""
         pygame.init()
         self.settings = Settings()
+        self.settings.initialize_dynamic_settings()
         self.game_stats = GameStats(self.settings.starting_ship_count)
 
         self.screen = pygame.display.set_mode(
