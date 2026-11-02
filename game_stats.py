@@ -1,6 +1,4 @@
-# from pathlib import Path
 import json
-
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -20,7 +18,6 @@ class GameStats():
     def init_saved_scores(self):
         """Initialize the high score from a saved file."""
         self.path = self.settings.scores_file
-        # if self.path.exists() and self.path.stat().st_size > 0:
         if self.path.exists() and self.path.stat().__sizeof__() > 20:
             contents = self.path.read_text()
             if not contents:
@@ -30,7 +27,6 @@ class GameStats():
         else:
             self.hi_score = 0
             self.save_scores()
-            # save the file
 
     def save_scores(self):
         """Save the current high score to a file."""
@@ -42,6 +38,7 @@ class GameStats():
             print(f"File Not Found: {e}")
 
     def reset_stats(self):
+        """ Reset the game statistics to their initial values."""
         self.ships_left = self.settings.starting_ship_count
         self.score = 0
         self.level = 1
@@ -50,34 +47,24 @@ class GameStats():
         """
         Update the game stats based on collisions and other events.
         """
-
-        # update score
         self._update_score(collisions)
-
-        # update max score
         self._update_max_score()
-
-        # update high score
         self._update_hi_score()
 
-
     def _update_max_score(self):
+        """Update the maximum score if the current score exceeds it."""
         if self.score > self.max_score:
             self.max_score = self.score
-        # print(f"Max: {self.max_score}")
 
     def _update_hi_score(self):
+        """Update the high score if the current score exceeds it."""
         if self.score > self.hi_score:
             self.hi_score = self.score
-        # print(f"High: {self.hi_score}"
 
     def _update_score(self, collisions):
+        """Update the score based on the number of aliens hit."""
         for alien in collisions.values():
             self.score += self.settings.alien_points
-        # print(f"Score: {self.score}")
-
 
     def update_level(self):
         self.level += 1
-        # print(f"Level: {self.level}") 
-    

@@ -1,8 +1,4 @@
 import pygame.font
-# from alien_invasion import AlienInvasion
-# from typing import TYPE_CHECKING
-
-# if TYPE_CHECKING:
 
 class HUD:
     """A class to manage the heads-up display (HUD) for the game."""
@@ -30,6 +26,7 @@ class HUD:
         self.life_rect = self.life_image.get_rect()
 
     def update_scores(self):
+        """Update the score, max score, and hi score images for the HUD."""
         self._update_max_score()        
         self._update_score()
         self._update_hi_score()

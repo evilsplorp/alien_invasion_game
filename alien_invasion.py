@@ -1,9 +1,10 @@
 """
-Alien Invasion Game
+Alien Invasion Game  
+Part 3
 Raymond Black
 Creating a basic 'Space Invader'-type game in pieces
 Resources: Copied from tutorial videos
-2026-11-01
+2026-11-02
 """
 
 import sys
@@ -74,12 +75,9 @@ class AlienInvasion:
         """
         if self.ship.check_collisions(self.alien_fleet.fleet):
             self._check_game_status()
-            # subtract one life if possible
 
-        # check collisions between aliens and the bottom of the screen
         if self.alien_fleet.check_fleet_bottom():
             self._check_game_status()
-        # check collisions between bullets and aliens
         collisions = self.alien_fleet.check_collisions(self.ship.arsenal.arsenal)
         if collisions:
             self.impact_sound.play()
@@ -90,9 +88,7 @@ class AlienInvasion:
         if self.alien_fleet.check_destroyed_status():
             self._reset_level()
             self.settings.increase_difficulty()
-            # update game stats level
             self.game_stats.update_level()
-            # update HUD view
             self.HUD.update_level()
 
     def _check_game_status(self):
@@ -105,8 +101,6 @@ class AlienInvasion:
             sleep(0.5)
         else:
             self.game_active = False
-
-
 
     def _reset_level(self):
         """ Resets the level when necessary. """
@@ -167,7 +161,6 @@ class AlienInvasion:
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = False
 
-
     def _check_keydown_events(self, event):
         """Respond to keypresses, handling movements, firing mechanics, and quitting."""
 
@@ -185,7 +178,6 @@ class AlienInvasion:
             self.game_stats.save_scores()
             pygame.quit()
             sys.exit()
-
 
 if __name__ == '__main__':
     ai = AlienInvasion()

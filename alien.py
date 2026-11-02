@@ -38,6 +38,9 @@ class Alien(Sprite):
         self.rect.y = self.y
 
     def check_edges(self):
+        """
+        Locate the edges of the screen.
+        """
         return (self.rect.right >= self.boundaries.right or self.rect.left <= self.boundaries.left)
 
     def draw_alien(self):
