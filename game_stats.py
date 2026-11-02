@@ -79,5 +79,5 @@ class GameStats():
 
     def update_level(self):
         self.level += 1
-        # print(f"Level: {self.level}")
+        # print(f"Level: {self.level}") 
     
