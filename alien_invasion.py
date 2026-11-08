@@ -1,10 +1,10 @@
 """
 Alien Invasion Game  
-Part 3
+Track 2 Assets
 Raymond Black
 Creating a basic 'Space Invader'-type game in pieces
 Resources: Copied from tutorial videos
-2026-11-02
+2026-11-08
 """
 
 import sys
@@ -13,7 +13,6 @@ from settings import Settings
 from game_stats import GameStats
 from ship import Ship
 from arsenal import Arsenal
-# from alien import Alien
 from alien_fleet import AlienFleet
 from time import sleep
 from button import Button
