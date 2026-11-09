@@ -5,7 +5,7 @@ if TYPE_CHECKING:
     from alien_invasion import AlienInvasion
 
 class Button:
-    """A class to manage the button object."""
+    """A class to manage the button object. """
 
     def __init__(self, game: 'AlienInvasion', msg):
         self.game = game

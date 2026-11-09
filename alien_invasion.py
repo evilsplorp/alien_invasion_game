@@ -1,11 +1,11 @@
 """
 Alien Invasion Game  
-Track 2 Assets, Milestone 1
+Track 2 Assets, Milestone
 Raymond Black
 Creating a basic 'Space Invader'-type game in pieces
 Resources: Copied from tutorial videos
 2026-11-09
-"""
+""" 
 
 import sys
 import pygame

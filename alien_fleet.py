@@ -7,7 +7,7 @@ if TYPE_CHECKING:
     
 class AlienFleet:
     """
-    A class to manage the alien fleet made up of individual alien sprites
+    A class to manage the alien fleet made up of individual alien sprites.
     """
     def __init__(self, game: 'AlienInvasion'):
         """
