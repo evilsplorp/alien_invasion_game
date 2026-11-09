@@ -18,3 +18,6 @@
 ## Laser sound from https://pixabay.com/sound-effects/film-special-effects-laser-zap-90575/ 
 ## Alien ship explosion from https://pixabay.com/sound-effects/horror-heavy-shot-sound-477215/
 ## Background from https://opengameart.org/content/seamless-space-backgrounds
+
+# Milestone 1 video:
+## https://kaf2.courses.cscc.edu/media/Alien%20Invasion%20Game%2C%20Track%202%2C%20Milestone%201/1_xst53cov
