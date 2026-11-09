@@ -55,7 +55,7 @@ class AlienFleet:
         fleet_horizontal_space = fleet_w * alien_w
         fleet_vertical_space = fleet_h * alien_h
         x_offset = int((screen_w - fleet_horizontal_space)//2)
-        y_offset = int((half_screen - fleet_vertical_space)//2)
+        y_offset = int((half_screen - fleet_vertical_space)//2) + 25
         return x_offset,y_offset
 
 

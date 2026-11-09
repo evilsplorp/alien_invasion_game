@@ -1,10 +1,10 @@
 """
 Alien Invasion Game  
-Track 2 Assets
+Track 2 Assets, Milestone 1
 Raymond Black
 Creating a basic 'Space Invader'-type game in pieces
 Resources: Copied from tutorial videos
-2026-11-08
+2026-11-09
 """
 
 import sys
@@ -80,7 +80,8 @@ class AlienInvasion:
         collisions = self.alien_fleet.check_collisions(self.ship.arsenal.arsenal)
         if collisions:
             self.impact_sound.play()
-            self.impact_sound.fadeout(500)
+            # self.impact_sound.fadeout(500)
+            self.impact_sound.fadeout(1000)
             self.game_stats.update(collisions)
             self.HUD.update_scores()
 
@@ -170,7 +171,8 @@ class AlienInvasion:
         elif event.key == pygame.K_SPACE:
             if self.ship.fire():
                 self.laser_sound.play()
-                self.laser_sound.fadeout(250)
+                # was 250
+                self.laser_sound.fadeout(750)
 
         elif event.key == pygame.K_q:
             self.running = False
