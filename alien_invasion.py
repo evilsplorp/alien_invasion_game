@@ -1,11 +1,11 @@
 """
-Alien Invasion Game  
-Track 2 Assets, Milestone
+Alien Invasion Game
+Track 2 Assets, Milestone 2
 Raymond Black
 Creating a basic 'Space Invader'-type game in pieces
 Resources: Copied from tutorial videos
-2026-11-09
-""" 
+2026-11-19
+"""
 
 import sys
 import pygame
@@ -18,6 +18,7 @@ from time import sleep
 from button import Button
 from hud import HUD
 
+
 class AlienInvasion:
     """Overall class to manage game assets and behavior."""
 
@@ -29,14 +30,14 @@ class AlienInvasion:
 
         self.screen = pygame.display.set_mode(
             (self.settings.screen_w, self.settings.screen_h)
-            )
+        )
         pygame.display.set_caption(self.settings.name)
 
         self.bg = pygame.image.load(self.settings.bg_file)
-        self.bg = pygame.transform.scale(self.bg, 
-            (self.settings.screen_w, self.settings.screen_h)
-            )
-        
+        self.bg = pygame.transform.scale(
+            self.bg, (self.settings.screen_w, self.settings.screen_h)
+        )
+
         self.game_stats = GameStats(self)
         self.HUD = HUD(self)
         self.running = True
@@ -52,7 +53,7 @@ class AlienInvasion:
         self.alien_fleet = AlienFleet(self)
         self.alien_fleet.create_fleet()
 
-        self.play_button = Button(self, 'Play')
+        self.play_button = Button(self, "Play")
         self.game_active = False
 
     def run_game(self):
@@ -103,7 +104,7 @@ class AlienInvasion:
             self.game_active = False
 
     def _reset_level(self):
-        """ Resets the level when necessary. """
+        """Resets the level when necessary."""
         self.ship.arsenal.arsenal.empty()
         self.alien_fleet.fleet.empty()
         self.alien_fleet.create_fleet()
@@ -117,11 +118,10 @@ class AlienInvasion:
         self.ship._center_ship()
         self.game_active = True
         pygame.mouse.set_visible(False)
-        
 
     def _update_screen(self):
         """Update images on the screen and flip to the new screen."""
-        self.screen.blit(self.bg, (0,0))
+        self.screen.blit(self.bg, (0, 0))
         self.ship.draw()
         self.alien_fleet.draw()
         self.HUD.draw()
@@ -131,17 +131,17 @@ class AlienInvasion:
             pygame.mouse.set_visible(True)
 
         pygame.display.flip()
- 
+
     def _check_events(self):
         """Respond to keypresses and mouse events captured by Pygame."""
 
         for event in pygame.event.get():
-            if event.type == pygame.QUIT: 
+            if event.type == pygame.QUIT:
                 self.running = False
                 self.game_stats.save_scores()
                 pygame.quit()
                 sys.exit()
-            elif event.type == pygame.KEYDOWN and self.game_active  == True:
+            elif event.type == pygame.KEYDOWN and self.game_active == True:
                 self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
@@ -171,7 +171,7 @@ class AlienInvasion:
         elif event.key == pygame.K_SPACE:
             if self.ship.fire():
                 self.laser_sound.play()
-                # was 250
+                # self.laser_sound.fadeout(250)
                 self.laser_sound.fadeout(750)
 
         elif event.key == pygame.K_q:
@@ -180,6 +180,7 @@ class AlienInvasion:
             pygame.quit()
             sys.exit()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     ai = AlienInvasion()
     ai.run_game()
