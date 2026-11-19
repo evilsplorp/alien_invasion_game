@@ -67,7 +67,14 @@ class Settings:
         self.bullet_speed = 7
         self.bullet_amount = 5
 
-        self.fleet_speed = 2
+        # original fleet_speed
+        # self.fleet_speed = 2
+
+        self.fleet_speed = 12
+
+        # added a delay
+        self.fleet_step_delay = 250
+
         self.fleet_drop_speed = 40
         self.alien_points = 50
 
@@ -75,3 +82,6 @@ class Settings:
         self.ship_speed *= self.difficulty_scale
         self.bullet_speed *= self.difficulty_scale
         self.fleet_speed *= self.difficulty_scale
+
+        # shortens the pause as the levels increase
+        self.fleet_step_delay /= self.difficulty_scale
