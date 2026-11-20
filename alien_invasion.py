@@ -4,7 +4,7 @@ Track 2 Assets, Milestone 2
 Raymond Black
 Creating a basic 'Space Invader'-type game in pieces
 Resources: Copied from tutorial videos
-2026-11-19
+2026-11-20
 """
 
 import sys
@@ -17,6 +17,7 @@ from alien_fleet import AlienFleet
 from time import sleep
 from button import Button
 from hud import HUD
+from shipboom import ShipExplosion
 
 
 class AlienInvasion:
@@ -56,15 +57,24 @@ class AlienInvasion:
         self.play_button = Button(self, "Play")
         self.game_active = False
 
+        self.ship_explosion = pygame.mixer.Sound(self.settings.ship_explosion_sound)
+        self.ship_explosion_animation = ShipExplosion(self.settings)
+
     def run_game(self):
         """Start the main loop for the game, process updates and render frames."""
 
         while self.running:
             self._check_events()
             if self.game_active:
-                self.ship.update()
-                self.alien_fleet.update_fleet()
-                self._check_collisions()
+                # adding ship explosion stuff
+                if self.ship_explosion_animation.active:
+                    self.ship_explosion_animation.update()
+                    if not self.ship_explosion_animation.active:
+                        self._finish_ship_hit()
+                else:
+                    self.ship.update()
+                    self.alien_fleet.update_fleet()
+                    self._check_collisions()
             self._update_screen()
             self.clock.tick(self.settings.FPS)
 
@@ -93,13 +103,20 @@ class AlienInvasion:
             self.HUD.update_level()
 
     def _check_game_status(self):
+        """ """
+        # added ship explosion sound and explosion animation
+        self.ship_explosion.play()
+        self.ship_explosion_animation.start(self.ship.rect.center)
+
+    def _finish_ship_hit(self):
         """
-        Confirm the player still has ships left.
+        Confirm the player still has ships left after animation ends
         """
         if self.game_stats.ships_left > 0:
             self.game_stats.ships_left -= 1
             self._reset_level()
-            sleep(0.5)
+            self.ship._center_ship()
+            # sleep(0.5) removed
         else:
             self.game_active = False
 
@@ -122,7 +139,10 @@ class AlienInvasion:
     def _update_screen(self):
         """Update images on the screen and flip to the new screen."""
         self.screen.blit(self.bg, (0, 0))
-        self.ship.draw()
+        if self.ship_explosion_animation.active:
+            self.ship_explosion_animation.draw(self.screen)
+        else:
+            self.ship.draw()
         self.alien_fleet.draw()
         self.HUD.draw()
 

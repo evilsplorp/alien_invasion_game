@@ -150,7 +150,10 @@ class AlienFleet:
         """
         alien: Alien
         for alien in self.fleet:
-            if alien.rect.bottom >= self.settings.screen_h:
+            # if alien.rect.bottom >= self.settings.screen_h:
+            if (
+                alien.rect.bottom >= self.game.ship.rect.top
+            ):  # explosion happened at wrong time
                 return True
         return False
 

@@ -35,6 +35,14 @@ class Settings:
         # self.impact_sound = Path.cwd() / 'Assets' / 'sound' / 'impactSound.mp3'
         self.impact_sound = Path.cwd() / "Assets" / "sound" / "explosion3.mp3"
 
+        # player ship explosion sound
+        self.ship_explosion_sound = Path.cwd() / "Assets" / "sound" / "ship_asplode.mp3"
+
+        # player ship explosion image
+        self.explosion_file = Path.cwd() / "Assets" / "images" / "explosion_sheet.jpg"
+        self.explosion_size = 90
+        self.explosion_frame_delay = 35
+
         self.alien_file = Path.cwd() / "Assets" / "images" / "purple_enemy_1.png"
         self.alien_file_2 = Path.cwd() / "Assets" / "images" / "purple_enemy_2.png"
 
