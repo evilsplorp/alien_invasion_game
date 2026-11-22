@@ -56,7 +56,8 @@ class AlienFleet:
                 current_y = alien_h * row + y_offset
                 if col % 2 == 0 or row % 2 == 0:
                     continue
-                self._create_alien(current_x, current_y)
+                image_index = ((row // 2) + (col // 2)) % 2
+                self._create_alien(current_x, current_y, image_index)
 
     def calculate_offsets(self, alien_w, alien_h, screen_w, fleet_w, fleet_h):
         """
@@ -88,12 +89,11 @@ class AlienFleet:
 
         return int(fleet_w), int(fleet_h)
 
-    def _create_alien(self, current_x: int, current_y: int):
+    def _create_alien(self, current_x: int, current_y: int, image_index: int = 0):
         """
         Creating the individual aliens in the fleet.
         """
-        new_alien = Alien(self, current_x, current_y)
-
+        new_alien = Alien(self, current_x, current_y, image_index)
         self.fleet.add(new_alien)
 
     def _check_fleet_edges(self):
