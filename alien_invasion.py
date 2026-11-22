@@ -198,7 +198,9 @@ class AlienInvasion:
                 self.laser_sound.play()
                 # self.laser_sound.fadeout(250)
                 self.laser_sound.fadeout(750)
-
+        elif event.key == pygame.K_ESCAPE:
+            self.game_stats.save_scores()
+            self.game_active = False
         elif event.key == pygame.K_q:
             self.running = False
             self.game_stats.save_scores()
