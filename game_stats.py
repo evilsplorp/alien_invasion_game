@@ -4,11 +4,13 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from alien_invasion import AlienInvasion
 
-class GameStats():
+
+class GameStats:
     """
     Class to handles game status, including number of ships left.
     """
-    def __init__(self, game: 'AlienInvasion'):
+
+    def __init__(self, game: "AlienInvasion"):
         self.game = game
         self.settings = game.settings
         self.max_score = 0
@@ -21,16 +23,24 @@ class GameStats():
         if self.path.exists() and self.path.stat().__sizeof__() > 20:
             contents = self.path.read_text()
             if not contents:
-                print('file empty')
-            scores = json.loads(contents)
-            self.hi_score = scores.get('hi_score', 0)
+                print("file empty")
+                self.hi_score = 0
+                self.hi_score_hit_percent = 0.0
+            else:
+                scores = json.loads(contents)
+                self.hi_score = scores.get("hi_score", 0)
+                self.hi_score_hit_percent = scores.get("hi_score_hit_percent", 0.0)
         else:
             self.hi_score = 0
+            self.hi_score_hit_percent = 0.0
             self.save_scores()
 
     def save_scores(self):
         """Save the current high score to a file."""
-        scores = {'hi_score': self.hi_score}
+        scores = {
+            "hi_score": self.hi_score,
+            "hi_score_hit_percent": round(self.hi_score_hit_percent, 1),
+        }
         contents = json.dumps(scores, indent=4)
         try:
             self.path.write_text(contents)
@@ -38,10 +48,20 @@ class GameStats():
             print(f"File Not Found: {e}")
 
     def reset_stats(self):
-        """ Reset the game statistics to their initial values."""
+        """Reset the game statistics to their initial values."""
         self.ships_left = self.settings.starting_ship_count
         self.score = 0
         self.level = 1
+        self.shots_fired = 0
+        self.shots_hit = 0
+
+    def get_hit_percent(self):
+        """
+        Calculate accuracy percentage for player shots.
+        """
+        if self.shots_fired == 0:
+            return 0.0
+        return (self.shots_hit / self.shots_fired) * 100
 
     def update(self, collisions):
         """
@@ -60,6 +80,7 @@ class GameStats():
         """Update the high score if the current score exceeds it."""
         if self.score > self.hi_score:
             self.hi_score = self.score
+            self.hi_score_hit_percent = self.get_hit_percent()
 
     def _update_score(self, collisions):
         """Update the score based on the number of aliens hit."""

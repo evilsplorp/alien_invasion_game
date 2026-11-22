@@ -91,10 +91,11 @@ class AlienInvasion:
             self._check_game_status()
         collisions = self.alien_fleet.check_collisions(self.ship.arsenal.arsenal)
         if collisions:
+            self.game_stats.shots_hit += len(collisions)
             self.impact_sound.play()
-            # self.impact_sound.fadeout(500)
             self.impact_sound.fadeout(1000)
             self.game_stats.update(collisions)
+            self.HUD.update_hit_percent()
             self.HUD.update_scores()
 
         if self.alien_fleet.check_destroyed_status():
@@ -132,6 +133,7 @@ class AlienInvasion:
         self.settings.initialize_dynamic_settings()
         self.game_stats.reset_stats()
         self.HUD.update_scores()
+        self.HUD.update_hit_percent()
         self._reset_level()
         self.ship._center_ship()
         self.game_active = True
@@ -191,6 +193,8 @@ class AlienInvasion:
             self.ship.moving_left = True
         elif event.key == pygame.K_SPACE:
             if self.ship.fire():
+                self.game_stats.shots_fired += 1
+                self.HUD.update_hit_percent()
                 self.laser_sound.play()
                 # self.laser_sound.fadeout(250)
                 self.laser_sound.fadeout(750)
