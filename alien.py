@@ -66,10 +66,14 @@ class Alien(Sprite):
         """
         Locate the edges of the screen.
         """
-        return (
-            self.rect.right >= self.boundaries.right
-            or self.rect.left <= self.boundaries.left
-        )
+        next_step = self.settings.fleet_speed * self.fleet.fleet_direction
+        if self.fleet.fleet_direction > 0:
+            return (
+                self.rect.right >= self.boundaries.right
+                or self.rect.left <= self.boundaries.left
+            )
+        else:
+            return self.rect.left + next_step <= self.boundaries.left
 
     def draw_alien(self):
         """Generate the alien image onto the screen surface at its updated position."""

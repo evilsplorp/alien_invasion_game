@@ -69,7 +69,9 @@ class Settings:
         self.button_font_size = 48
         self.HUD_font_size = 24
         # self.font_file = Path.cwd() / 'Assets' / 'fonts' / 'Silkscreen' / 'Silkscreen-Bold.ttf'
-        self.font_file = Path.cwd() / "Assets" / "fonts" / "Righteous" / "Righteous.ttf"
+        self.font_file = (
+            Path.cwd() / "Assets" / "fonts" / "Righteous" / "Righteous-Regular.ttf"
+        )
 
     def initialize_dynamic_settings(self):
         """Initialize settings that change throughout the game."""

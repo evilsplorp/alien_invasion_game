@@ -105,7 +105,8 @@ class AlienFleet:
             if alien.check_edges():
                 self._drop_alien_fleet()
                 self.fleet_direction *= -1
-                break
+                return True
+        return False
 
     def _drop_alien_fleet(self):
         """
@@ -113,6 +114,8 @@ class AlienFleet:
         """
         for alien in self.fleet:
             alien.y += self.fleet_drop_speed
+            # adjusting drop
+            alien.rect.y = alien.y
 
     def update_fleet(self):
         """
@@ -122,8 +125,8 @@ class AlienFleet:
         current_time = pygame.time.get_ticks()
         if current_time - self.last_move_time >= self.settings.fleet_step_delay:
             self.last_move_time = current_time
-            self._check_fleet_edges()
-            self.fleet.update()
+            if not self._check_fleet_edges():
+                self.fleet.update()
 
     def draw(self):
         """
