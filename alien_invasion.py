@@ -45,6 +45,8 @@ class AlienInvasion:
         self.clock = pygame.time.Clock()
 
         pygame.mixer.init()
+        pygame.mixer.music.load(self.settings.bg_music)
+        pygame.mixer.music.set_volume(0.2)
         self.laser_sound = pygame.mixer.Sound(self.settings.laser_sound)
         self.laser_sound.set_volume(0.3)
         self.impact_sound = pygame.mixer.Sound(self.settings.impact_sound)
@@ -130,6 +132,7 @@ class AlienInvasion:
             # sleep(0.5) removed
         else:
             self.game_over.play()  # sound when last ship is destroyed
+            pygame.mixer.music.stop()
             self.game_active = False
 
     def _reset_level(self):
@@ -148,6 +151,7 @@ class AlienInvasion:
         self.ship._center_ship()
         self.game_active = True
         pygame.mouse.set_visible(False)
+        pygame.mixer.music.play(-1)  # the -1 makes it loop
 
     def _update_screen(self):
         """Update images on the screen and flip to the new screen."""
@@ -211,11 +215,13 @@ class AlienInvasion:
                 # self.laser_sound.fadeout(250)
                 self.laser_sound.fadeout(750)
         elif event.key == pygame.K_ESCAPE:
+            pygame.mixer.music.stop()
             self.game_stats.save_scores()
             self.game_active = False
         elif event.key == pygame.K_q:
             self.running = False
             self.game_stats.save_scores()
+            pygame.mixer.music.stop()
             pygame.quit()
             sys.exit()
 
