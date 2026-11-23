@@ -89,7 +89,7 @@ class Settings:
         # original fleet_speed
         # self.fleet_speed = 2
 
-        self.fleet_speed = 200  # set to 200 for testing
+        self.fleet_speed = 12  # set to 200 for testing
 
         # added a delay
         self.fleet_step_delay = 250

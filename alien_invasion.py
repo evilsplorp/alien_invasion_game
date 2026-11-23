@@ -4,7 +4,7 @@ Track 2 Assets, Milestone 2
 Raymond Black
 Creating a basic 'Space Invader'-type game in pieces
 Resources: Copied from tutorial videos
-2026-11-22
+2026-11-23
 """
 
 import sys
@@ -48,9 +48,9 @@ class AlienInvasion:
         pygame.mixer.music.load(self.settings.bg_music)
         pygame.mixer.music.set_volume(0.2)
         self.laser_sound = pygame.mixer.Sound(self.settings.laser_sound)
-        self.laser_sound.set_volume(0.3)
+        self.laser_sound.set_volume(0.2)
         self.impact_sound = pygame.mixer.Sound(self.settings.impact_sound)
-        self.impact_sound.set_volume(0.3)
+        self.impact_sound.set_volume(0.2)
 
         self.ship = Ship(self, Arsenal(self))
         self.alien_fleet = AlienFleet(self)
@@ -59,15 +59,16 @@ class AlienInvasion:
         self.play_button = Button(self, "PLAY")
         self.game_active = False
 
+        # ship explosion
         self.ship_explosion = pygame.mixer.Sound(self.settings.ship_explosion_sound)
-        self.ship_explosion.set_volume(0.3)
+        self.ship_explosion.set_volume(0.2)
         self.ship_explosion_animation = ShipExplosion(self.settings)
 
         # calling sound file that plays when clicking PLAY
         self.play_sound = pygame.mixer.Sound(self.settings.play_button_sound)
         self.play_sound.set_volume(0.5)
 
-        # calling sound file that plays when clicking PLAY
+        # calling sound file that plays when game ends
         self.game_over = pygame.mixer.Sound(self.settings.game_over)
         self.game_over.set_volume(0.5)
 

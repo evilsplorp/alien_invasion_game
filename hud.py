@@ -14,7 +14,7 @@ class HUD:
         self.font = pygame.font.Font(
             self.settings.font_file, self.settings.HUD_font_size
         )
-        self.padding = 20
+        self.padding = 10
         self.update_scores()
         self.update_hit_percent()
         self.update_hi_score_level()
