@@ -35,6 +35,9 @@ class Settings:
         # self.impact_sound = Path.cwd() / 'Assets' / 'sound' / 'impactSound.mp3'
         self.impact_sound = Path.cwd() / "Assets" / "sound" / "explosion3.mp3"
 
+        # 'begin' sound when clicking PLAY
+        self.play_button_sound = Path.cwd() / "Assets" / "sound" / "begin.mp3"
+
         # player ship explosion sound
         self.ship_explosion_sound = Path.cwd() / "Assets" / "sound" / "ship_asplode.mp3"
 

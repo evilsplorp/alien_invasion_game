@@ -4,7 +4,7 @@ Track 2 Assets, Milestone 2
 Raymond Black
 Creating a basic 'Space Invader'-type game in pieces
 Resources: Copied from tutorial videos
-2026-11-20
+2026-11-22
 """
 
 import sys
@@ -60,6 +60,10 @@ class AlienInvasion:
         self.ship_explosion = pygame.mixer.Sound(self.settings.ship_explosion_sound)
         self.ship_explosion.set_volume(0.3)
         self.ship_explosion_animation = ShipExplosion(self.settings)
+
+        # calling sound file that plays when clicking PLAY
+        self.play_sound = pygame.mixer.Sound(self.settings.play_button_sound)
+        self.play_sound.set_volume(0.5)
 
     def run_game(self):
         """Start the main loop for the game, process updates and render frames."""
@@ -172,9 +176,11 @@ class AlienInvasion:
                 self._check_button_clicked()
 
     def _check_button_clicked(self):
-        mouse_pos = pygame.mouse.get_pos()
-        if self.play_button.check_clicked(mouse_pos):
-            self.restart_game()
+        if not self.game_active:
+            mouse_pos = pygame.mouse.get_pos()
+            if self.play_button.check_clicked(mouse_pos):
+                self.play_sound.play()
+                self.restart_game()
 
     def _check_keyup_events(self, event):
         """Respond to key releases."""
