@@ -26,13 +26,16 @@ class GameStats:
                 print("file empty")
                 self.hi_score = 0
                 self.hi_score_hit_percent = 0.0
+                self.hi_score_level = 1
             else:
                 scores = json.loads(contents)
                 self.hi_score = scores.get("hi_score", 0)
                 self.hi_score_hit_percent = scores.get("hi_score_hit_percent", 0.0)
+                self.hi_score_level = scores.get("hi_score_level", 1)
         else:
             self.hi_score = 0
             self.hi_score_hit_percent = 0.0
+            self.hi_score_level
             self.save_scores()
 
     def save_scores(self):
@@ -40,6 +43,7 @@ class GameStats:
         scores = {
             "hi_score": self.hi_score,
             "hi_score_hit_percent": round(self.hi_score_hit_percent, 1),
+            "hi_score_level": self.hi_score_level,
         }
         contents = json.dumps(scores, indent=4)
         try:
@@ -81,6 +85,7 @@ class GameStats:
         if self.score > self.hi_score:
             self.hi_score = self.score
             self.hi_score_hit_percent = self.get_hit_percent()
+            self.hi_score_level = self.level
 
     def _update_score(self, collisions):
         """Update the score based on the number of aliens hit."""

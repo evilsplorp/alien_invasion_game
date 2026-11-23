@@ -54,7 +54,7 @@ class AlienInvasion:
         self.alien_fleet = AlienFleet(self)
         self.alien_fleet.create_fleet()
 
-        self.play_button = Button(self, "Play")
+        self.play_button = Button(self, "PLAY")
         self.game_active = False
 
         self.ship_explosion = pygame.mixer.Sound(self.settings.ship_explosion_sound)
@@ -104,6 +104,7 @@ class AlienInvasion:
             self.impact_sound.fadeout(1000)
             self.game_stats.update(collisions)
             self.HUD.update_hit_percent()
+            self.HUD.update_hi_score_level()
             self.HUD.update_scores()
 
         if self.alien_fleet.check_destroyed_status():

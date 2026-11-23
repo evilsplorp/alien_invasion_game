@@ -17,6 +17,7 @@ class HUD:
         self.padding = 20
         self.update_scores()
         self.update_hit_percent()
+        self.update_hi_score_level()
         self._setup_life_image()
         self.update_level()
 
@@ -83,8 +84,20 @@ class HUD:
 
         # Aligning it properly
         self.hit_rect = self.hit_image.get_rect()
-        self.hit_rect.centerx = self.hi_score_rect.centerx
+        self.hit_rect.left = self.hi_score_rect.centerx + 10
         self.hit_rect.top = self.hi_score_rect.bottom + 10
+
+    def update_hi_score_level(self):
+        """
+        Render the hi level positioned to the left of the hit percentage.
+        """
+        hi_level_str = f"Level: {self.game_stats.hi_score_level:,.0f}"
+        self.hi_level_image = self.font.render(
+            hi_level_str, True, self.settings.text_color, None
+        )
+        self.hi_level_rect = self.hi_level_image.get_rect()
+        self.hi_level_rect.top = self.hit_rect.top
+        self.hi_level_rect.right = self.hi_score_rect.centerx - 10
 
     def _draw_lives(self):
         """Draw the remaining lives as ship images in the HUD."""
@@ -101,4 +114,5 @@ class HUD:
         self.screen.blit(self.score_image, self.score_rect)
         self.screen.blit(self.level_image, self.level_rect)
         self.screen.blit(self.hit_image, self.hit_rect)
+        self.screen.blit(self.hi_level_image, self.hi_level_rect)
         self._draw_lives()

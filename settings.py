@@ -66,8 +66,8 @@ class Settings:
         # added button_text_color to differentiate from text_color for HUD
         self.button_text_color = (97, 14, 182)
         self.text_color = (255, 255, 255)
-        self.button_font_size = 36
-        self.HUD_font_size = 14
+        self.button_font_size = 48
+        self.HUD_font_size = 24
         # self.font_file = Path.cwd() / 'Assets' / 'fonts' / 'Silkscreen' / 'Silkscreen-Bold.ttf'
         self.font_file = Path.cwd() / "Assets" / "fonts" / "Righteous" / "Righteous.ttf"
 
