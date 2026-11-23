@@ -38,6 +38,9 @@ class Settings:
         # 'begin' sound when clicking PLAY
         self.play_button_sound = Path.cwd() / "Assets" / "sound" / "begin.mp3"
 
+        # game over sound
+        self.game_over = Path.cwd() / "Assets" / "sound" / "game_over.mp3"
+
         # player ship explosion sound
         self.ship_explosion_sound = Path.cwd() / "Assets" / "sound" / "ship_asplode.mp3"
 
@@ -81,7 +84,7 @@ class Settings:
         # original fleet_speed
         # self.fleet_speed = 2
 
-        self.fleet_speed = 12
+        self.fleet_speed = 12  # set to 200 for testing
 
         # added a delay
         self.fleet_step_delay = 250

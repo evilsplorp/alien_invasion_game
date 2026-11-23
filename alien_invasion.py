@@ -65,6 +65,10 @@ class AlienInvasion:
         self.play_sound = pygame.mixer.Sound(self.settings.play_button_sound)
         self.play_sound.set_volume(0.5)
 
+        # calling sound file that plays when clicking PLAY
+        self.game_over = pygame.mixer.Sound(self.settings.game_over)
+        self.game_over.set_volume(0.5)
+
     def run_game(self):
         """Start the main loop for the game, process updates and render frames."""
 
@@ -124,6 +128,7 @@ class AlienInvasion:
             self.ship._center_ship()
             # sleep(0.5) removed
         else:
+            self.game_over.play()  # sound when last ship is destroyed
             self.game_active = False
 
     def _reset_level(self):
