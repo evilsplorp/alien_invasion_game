@@ -24,3 +24,6 @@
 
 # Milestone 1 video:
 ## https://kaf2.courses.cscc.edu/media/Alien%20Invasion%20Game%2C%20Track%202%2C%20Milestone%201/1_xst53cov
+
+# Milestone 2 video:
+## https://kaf2.courses.cscc.edu/media/Alien%20Invasion%20Game%2C%20Track%202%2C%20Milestone%202/1_k6imw1tj
